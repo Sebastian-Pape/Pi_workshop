@@ -1,8 +1,7 @@
 import RPi.GPIO as GPIO
 import time
 
-def test_func():
-    return 'funktioniert '
+
 GPIO.setmode(GPIO.BOARD)
 
 GPIO.setup(11, GPIO.OUT)
