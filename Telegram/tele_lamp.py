@@ -6,11 +6,11 @@ def lamp_Strobo_20():
         GPIO.output(36, GPIO.HIGH)
         GPIO.output(38, GPIO.HIGH)
         GPIO.output(40, GPIO.HIGH)
-        sleep(0.1)
+        sleep(0.05)
         GPIO.output(36, GPIO.LOW)
         GPIO.output(38, GPIO.LOW)
         GPIO.output(40, GPIO.LOW)
-        sleep(0.1)
+        sleep(0.05)
 
 def lamp_Strobo():
         GPIO.output(36, GPIO.HIGH)
@@ -45,3 +45,21 @@ def lamp_rot():
 
 def lamp_off():
     GPIO.cleanup()
+
+def clean():
+    GPIO.cleanup()
+    GPIO.setmode(GPIO.BOARD)
+
+def setup():
+    GPIO.setmode(GPIO.BOARD)
+    GPIO.setup(36, GPIO.OUT)
+    GPIO.setup(38, GPIO.OUT)
+    GPIO.setup(40, GPIO.OUT)
+    GPIO.output(36, GPIO.LOW)
+    GPIO.output(38, GPIO.LOW)
+    GPIO.output(40, GPIO.LOW)
+    GPIO.cleanup()
+    GPIO.setmode(GPIO.BOARD)
+    GPIO.setup(36, GPIO.OUT)
+    GPIO.setup(38, GPIO.OUT)
+    GPIO.setup(40, GPIO.OUT)    

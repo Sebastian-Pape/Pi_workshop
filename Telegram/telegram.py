@@ -39,20 +39,6 @@ def keyboard_strobo(ident):
 def keyboard_off(ident):
     piBot.sendMessage(chat_id=ident, text="Lampensteuerung deaktiviert", reply_markup=ReplyKeyboardRemove())
 
-def clean():
-    GPIO.cleanup()
-    GPIO.setmode(GPIO.BOARD)
-
-def reset():
-    GPIO.setmode(GPIO.BOARD)
-    GPIO.setup(36, GPIO.OUT)
-    GPIO.setup(38, GPIO.OUT)
-    GPIO.setup(40, GPIO.OUT)
-    GPIO.output(36, GPIO.LOW)
-    GPIO.output(38, GPIO.LOW)
-    GPIO.output(40, GPIO.LOW)
-    GPIO.cleanup()
-
 # starting to interact with the Bot
 def texting(message):
     print(message)
@@ -61,13 +47,13 @@ def texting(message):
     text = message['text']
     #piBot.sendMessage(contact_id, f'Hey {contact_name}!')
 
-    if text == 'help':
+    if text == 'Help':
 
-        piBot.sendMessage(contact_id, 'Hallo, auf die folgenden Kommandos höre ich: Lampe, Lampe Strobo, clean, reset. Viel Spaß!')
+        piBot.sendMessage(contact_id, 'Hallo, auf die folgenden Kommandos höre ich: Lampe, Lampe Strobo, Setup, Clean. Viel Spaß!')
 
         ### Geht nur mit Python3
 
-        #piBot.sendMessage(contact_id, f'Hey {contact_name}, auf die folgenden Kommandos höre ich: Lampe, Lampe Strobo, clean, reset. Viel Spaß!')
+        #piBot.sendMessage(contact_id, f'Hey {contact_name}, auf die folgenden Kommandos höre ich: Lampe, Lampe Strobo, clean, setup. Viel Spaß!')
         pass
     if text == 'Lampe':
         GPIO.setmode(GPIO.BOARD)
@@ -79,11 +65,8 @@ def texting(message):
     if text == 'Lampe Rot':
         lamp_rot()
     if text == 'Lampe Strobo':
+        setup()
         keyboard_strobo(contact_id)
-        GPIO.setmode(GPIO.BOARD)
-        GPIO.setup(36, GPIO.OUT)
-        GPIO.setup(38, GPIO.OUT)
-        GPIO.setup(40, GPIO.OUT)
     if text == 'Strobo 20':
         lamp_Strobo_20()
     if text == 'Strobo':
@@ -91,10 +74,10 @@ def texting(message):
     if text == 'Beenden':
         lamp_off()
         keyboard_off(contact_id)
-    if text == 'clean':
+    if text == 'Clean':
         clean()
-    if text == 'reset':
-        reset()
+    if text == 'Setup':
+        setup()
 
 if __name__ == '__main__':
     piBot = tp.Bot(get_ID())
